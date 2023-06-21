@@ -25,6 +25,9 @@ class GameObject:
     def hit_box(self):
         raise Exception('not implemented')
         return (x, y, r)
+    
+    def score_count(self, window):
+        raise Exception("not implemented")
 
 class Game:
     def __init__(self, caption, window_height, window_width):
@@ -47,6 +50,7 @@ class Game:
             # Clear and render
             self._window.fill(pygame.Color("white"))
             self.__draw_objects()
+            self.__game_score()
 
             # Find events and dispatch
             for event in pygame.event.get():
@@ -97,8 +101,9 @@ class Game:
         for go in self._game_objects:
             go.update()
 
-    def __game_score(self, count):
-        pass
+    def __game_score(self):
+        for go in self._game_objects:
+            go.score_count(self._window)
 
 
 

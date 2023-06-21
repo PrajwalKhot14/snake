@@ -13,6 +13,9 @@ class Snake(GameObject):
     def draw(self, window):
         pygame.draw.circle(window, pygame.Color(255,0,0), (self._x , self._y), 2)
 
+    def score_count(self, window):
+        pass
+
     def update(self):
         self._y += self._speed_y
         self._x += self._speed_x
@@ -57,9 +60,13 @@ class GreenDot(GameObject):
         return (self._x, self._y, 2)
     
     def change_location(self):
-        self._x = random.randint(10, 490)
-        self._y = random.randint(10, 490)
+        self._x = random.randint(50, 450)
+        self._y = random.randint(50, 450)
         self.count += 1
+
+    def score_count(self, window):
+        score = pygame.font.Font(None, 36).render("Score: "+str(self.count), True, (100,100,100))
+        window.blit(score, (10, 10))
 
 
 class SnakeGame(Game):
