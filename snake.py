@@ -1,5 +1,6 @@
 from engine import Game, GameObject
 import pygame
+import random
 
 class Snake(GameObject):
     def __init__(self, x, y, speed_x, speed_y):
@@ -36,7 +37,10 @@ class Snake(GameObject):
         elif event.key == pygame.K_DOWN:
             self._speed_x = 0 
             self._speed_y = 1
-
+            
+    def hit_box(self):
+        return (self._x, self._y, 2)
+    
 class GreenDot(GameObject):
     def __init__(self, x, y):
         self._x = x
@@ -48,6 +52,13 @@ class GreenDot(GameObject):
     def update(self):
         pass
 
+    def hit_box(self):
+        return (self._x, self._y, 2)
+    
+    def change_location(self):
+        self._x = random.randint(10, 490)
+        self._y = random.randint(10, 490)
+
 
 class SnakeGame(Game):
     def __init__(self):
@@ -57,7 +68,10 @@ class SnakeGame(Game):
         # self.eng.add_object(self._snake)
         self.add_object(self._snake)
         self.add_object(self._dot)
-        
+
+
 
     def handle_collission(self, obj1, obj2):
-        self._point.change_location()
+        self._dot.change_location()
+
+    

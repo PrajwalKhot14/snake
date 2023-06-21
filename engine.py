@@ -1,5 +1,6 @@
 import pygame
 from collections import defaultdict
+import math
 
 class GameObject:
     def __init__(self):
@@ -57,6 +58,8 @@ class Game:
 
             # Update loop
             self.__update_objects()
+            self.__detect_collission()
+
             pygame.display.flip()
 
             # Detect collission
@@ -67,7 +70,23 @@ class Game:
 
         pygame.quit()
 
-    def handle_collission(self):
+    def __detect_collission(self):
+        corr = [(x.hit_box(), x) for x in self._game_objects]
+        for i in range(len(corr)):
+            hdi, obji = corr[i]
+            x1, y1, r1 = hdi
+            for j in range(i+1, len(corr)):
+                hdj, objj = corr[j]
+                x2, y2, r2 = hdj
+
+                r = r1 + r2
+                dist = math.sqrt(math.pow(x2-x1, 2)+ math.pow(y2-y1, 2))
+
+                if dist <= r:
+                    self.handle_collission(obji, objj)
+
+
+    def handle_collission(self, obj1, obj2):
         pass
 
     def __draw_objects(self):
@@ -77,3 +96,7 @@ class Game:
     def __update_objects(self):
         for go in self._game_objects:
             go.update()
+
+
+
+# r < sqrt((r.x-g.x)^2, (r.y))
