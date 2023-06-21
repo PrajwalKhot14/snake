@@ -59,7 +59,6 @@ class GreenDot(GameObject):
         self._x = random.randint(10, 490)
         self._y = random.randint(10, 490)
 
-
 class SnakeGame(Game):
     def __init__(self):
         Game.__init__(self, "Snake", 500, 500)
