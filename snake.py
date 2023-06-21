@@ -45,6 +45,7 @@ class GreenDot(GameObject):
     def __init__(self, x, y):
         self._x = x
         self._y = y
+        self.count = 0
 
     def draw(self, window):
         pygame.draw.circle(window, pygame.Color(0, 255, 0), (self._x, self._y), 2)
@@ -58,10 +59,14 @@ class GreenDot(GameObject):
     def change_location(self):
         self._x = random.randint(10, 490)
         self._y = random.randint(10, 490)
+        self.count += 1
+
 
 class SnakeGame(Game):
     def __init__(self):
         Game.__init__(self, "Snake", 500, 500)
+        pygame.display.set_caption('Snake Game')
+
         self._snake = Snake(250, 250, 0, -1) 
         self._dot = GreenDot(200, 200)
         # self.eng.add_object(self._snake)
@@ -72,5 +77,6 @@ class SnakeGame(Game):
 
     def handle_collission(self, obj1, obj2):
         self._dot.change_location()
+        print(self._dot.count)
 
     

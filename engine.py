@@ -97,6 +97,9 @@ class Game:
         for go in self._game_objects:
             go.update()
 
+    def __game_score(self, count):
+        pass
+
 
 
 # r < sqrt((r.x-g.x)^2, (r.y))
