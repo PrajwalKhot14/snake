@@ -76,10 +76,8 @@ class SnakeGame(Game):
 
         self._snake = Snake(250, 250, 0, -1) 
         self._dot = GreenDot(200, 200)
-        # self.eng.add_object(self._snake)
         self.add_object(self._snake)
         self.add_object(self._dot)
-
 
 
     def handle_collission(self, obj1, obj2):
