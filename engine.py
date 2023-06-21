@@ -28,6 +28,10 @@ class GameObject:
     
     def score_count(self, window):
         raise Exception("not implemented")
+    
+    def boundary(self):
+        raise Exception("not implemented")
+
 
 class Game:
     def __init__(self, caption, window_height, window_width):
@@ -103,6 +107,7 @@ class Game:
 
     def __game_score(self):
         for go in self._game_objects:
+            print(go)
             go.score_count(self._window)
 
 
