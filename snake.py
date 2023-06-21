@@ -81,7 +81,7 @@ class SnakeGame(Game):
         self.add_object(self._dot)
 
 
-    def handle_collission(self, obj1, obj2):
+    def handle_collision(self, obj1, obj2):
         self._dot.change_location()
         self._snake.count += 1
         print(self._snake.count)

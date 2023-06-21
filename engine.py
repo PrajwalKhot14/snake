@@ -66,19 +66,19 @@ class Game:
 
             # Update loop
             self.__update_objects()
-            self.__detect_collission()
+            self.__detect_collision()
 
             pygame.display.flip()
 
-            # Detect collission
+            # Detect collision
             # Find object hit boxes
             # Find intersecting hit boxes
             # for ever intersecting hit box
-            #   call collission_receiver.notify_collission(obj1, obj2)
+            #   call collision_receiver.notify_collision(obj1, obj2)
 
         pygame.quit()
 
-    def __detect_collission(self):
+    def __detect_collision(self):
         corr = [(x.hit_box(), x) for x in self._game_objects]
         for i in range(len(corr)):
             hdi, obji = corr[i]
@@ -91,10 +91,12 @@ class Game:
                 dist = math.sqrt(math.pow(x2-x1, 2)+ math.pow(y2-y1, 2))
 
                 if dist <= r:
-                    self.handle_collission(obji, objj)
+                    self.handle_collision(obji, objj)
+
+    # def __boundary_collision(self)
 
 
-    def handle_collission(self, obj1, obj2):
+    def handle_collision(self, obj1, obj2):
         pass
 
     def __draw_objects(self):
